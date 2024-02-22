@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <title>Document</title>
 </head>
 <body>
-    <div class="loginBox">
+    <div class="loginBox  m-0 pb-0">
 
-        <div class="loginBox1 d-flex  mb-5 mt-0 mx-0">
+        <div class="loginBox1 d-flex  mb- mt-0 mx-0">
             <button class="btn py-2" id="inscription">Incription</button>
             <button class="btn py-2 " id="connecter">Se Connecter</button>
         </div>
@@ -38,12 +38,12 @@
 
 
 
-            <div id="div2" style="display:none;">
+            <div id="div2" style="display:none; " class="loginBox3">
                <form action="inscription.php" method="POST">
                 <input id="" type="text" name="nom" placeholder="Nom"> 
                 <input id="" type="text" name="prenom" placeholder="Prenom"> 
                 <input id="" type="text" name="cin" placeholder="Cin"> 
-                <input id="" type="text" name="tel" placeholder="tel"> 
+                <input id="" type="text" name="tel" placeholder="Telephone"> 
                 <input id="" type="text" name="email" placeholder="Email"> 
                 <input id="" type="password" name="mp" placeholder="Mot De Passe"> 
                 <input id="" type="password" name="cmp" placeholder="Confirmer Mot De Passe">

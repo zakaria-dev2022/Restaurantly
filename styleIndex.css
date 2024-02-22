@@ -1,6 +1,6 @@
 
 body{
-    background: url(assets/img/Saveurs.png);
+    background: url(assets/img/restaurantly.png);
     margin: 0;
     padding:0;
     width: 100%;
@@ -18,9 +18,9 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 450px;
+    width: 400px;
     min-height: 200px;
-    background: #ffffff88;
+    background: #858181a6;
     border-radius: 10px;
     padding-bottom: 40px;
     box-sizing: border-box}
@@ -41,18 +41,18 @@ h3{margin: 0;padding: 0 0 20px;color: #fff;text-align: center}
     box-sizing: border-box
     
 }
-.loginBox input[type="text"]:hover, .loginBox input[type="password"]:hover{color: #ffffff;border: 1px solid #cda45e;box-shadow: 0 0 5px #cda45e, 0 0 10px #cda45e, 0 0 15px #cda45e, 0 2px 0 black}
+.loginBox input[type="text"]:hover, .loginBox input[type="password"]:hover{color: #ffffff;border: 1px solid #D3AF71;box-shadow: 0 0 5px #D3AF71, 0 0 10px #D3AF71, 0 0 15px #D3AF71, 0 2px 0 black}
 .loginBox input[type="text"]:focus, .loginBox input[type="password"]:focus
 {
-    border-bottom: 2px solid #cda45e
+    border-bottom: 2px solid #D3AF71
 }
 .inputBox{position: relative}
 .inputBox span{position: absolute;top: 10px;color: #262626}
 .loginBox input[type="submit"]{
     margin: 0 0 0 15px;
-    border: 2px solid #cda45e;
+    border: 2px solid #D3AF71;
     color: #fff;
-    background-color: #cda45e;
+    background-color: #D3AF71;
     border-radius: 50px;
     padding: 8px 25px;
     text-transform: uppercase;
@@ -62,18 +62,26 @@ h3{margin: 0;padding: 0 0 20px;color: #fff;text-align: center}
     transition: 0.3s;
 }
 .loginBox input[type="submit"]:hover{
-    color: #cda45e;
+    color: #D3AF71;
     background-color: #fff;
     font-weight: bold;
 }
 div a{color: #ffffff;font-size: 14px;font-weight: bold;text-decoration: none;text-align: center;display: block}
-div a:hover{color:#cda45e
+div a:hover{color:#D3AF71
 }
 p{color: #fff}
 
 
 .loginBox2{
-    padding: 40px;
+    /* padding: 40px; */
+    margin: 40px;
+}
+.loginBox3{
+    padding-left: 40px;
+    padding-right: 40px;
+    /* background-color: aqua;
+    margin-top: 10px !important; */
+
 }
 .loginBox1 button{
     width: 50%;
@@ -86,26 +94,26 @@ p{color: #fff}
 }
 #connecter{
     /* border-top-left-radius:30px ; */
-    background-color: #cda45e;
+    background-color: #D3AF71;
     color: #fff;
     
 }
 #connecter:hover{
     background-color: #ffffff;
-    color: #cda45e;
+    color: #D3AF71;
 }
 #inscription{
     /* border-top-left-radius:30px ; */
     background-color: #ffffff;
-    color: #cda45e;
+    color: #D3AF71;
     
 }
 #inscription:hover{
-    background-color: #cda45e;
+    background-color: #D3AF71;
     color: #ffffff;
 }
 
 ::placeholder{
-    color:rgb(255, 255, 255)!important;
+    color:#ffffff!important;
     font-weight: 500;
 }
