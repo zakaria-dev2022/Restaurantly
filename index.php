@@ -1,3 +1,17 @@
+<?php
+include_once("utils.class.php");
+if (!empty($_GET)) {
+if ($_GET['connection']=='echoué') {
+    echo "<script>alert('Votre Login Ou Mot De Passe Incorrect');</script>";
+}elseif ($_GET['inscription']=='ok') {
+    echo "<script>alert('Votre Compte Bien Crée');</script>";
+}
+else{
+    echo'';
+}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

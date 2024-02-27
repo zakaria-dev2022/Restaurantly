@@ -1,25 +1,20 @@
 <?php
 include_once ("client.class.php");
+
 extract($_POST);
-$connecter=Client::selectClient($login);
-    if (!empty($connecter)) {
-         foreach ($connecter as $v) {
-        if ($v["mot_de_passe"]==$password) {
-            Utils::location("index2.php");
-        }else {
-            Utils::location("index.php");
-        }
-        
+$connecter=Client::selectClient($login,$password);
+    if ($connecter){
+        session_start();
+       $_SESSION['id']=$connecter['id']; 
+       $_SESSION['nom']=$connecter['nom']; 
+       $_SESSION['prenom']=$connecter['prenom']; 
+       $_SESSION['cin']=$connecter['cin']; 
+       $_SESSION['tel']=$connecter['tel']; 
+       $_SESSION['email']=$connecter['email']; 
+       $_SESSION['mot_de_passe']=$connecter['mot_de_passe']; 
+       Utils::redirection('index2.php');
+    }else {
+        Utils::location("index.php?connection=echoué");
     }
-    } else {
-        Utils::location("index.php");
-    }
-    
-
-
-
-
-
-
 
 ?>

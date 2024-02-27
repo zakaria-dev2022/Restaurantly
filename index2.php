@@ -1,23 +1,28 @@
 <?php
 include_once ("utils.class.php");
 include_once ("produit.class.php");
+session_start();
+if (!isset($_SESSION['nom'])) {
+  header("Location:index.php");
+}
 $type_produits=Utils::select_all('type_produits');
 $type_reservation=Utils::select_all('type_reservation');
-$commentaire=Utils::select_all('message');
+$commentaire=Utils::select_commentaire();
+$logo= Utils::select_logo();
 
 //code validation de reservation
 
 // extract($_GET);
 if (isset($_GET['resultas'])) {
   $resultas=$_GET['resultas'];
-  $nom= $_GET['nom'];
-  $prenom= $_GET['prenom'];
+  $nom=$_SESSION['nom'];
+  $prenom=$_SESSION['prenom'];
 switch ($resultas) {
   case "erreur":
         echo "<script>alert('Votre Reservation Non Effectuer');</script>";
       break;
   case "reussie":
-        echo "<script>alert('Votre Reservation Bien Effectuer Mr(Mme).$nom $prenom');</script>";
+        echo "<script>alert('Votre Reservation Bien Effectuer Mr(Mme).$nom $prenom Attendez-Vous Notre Reponse.Merci!!');</script>";
       break;
   case "message_reussie":
         echo "<script>alert('Votre Message Bien Effectuer Mr(Mme).$nom $prenom');</script>";
@@ -36,7 +41,7 @@ switch ($resultas) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Restaurantly Noma</title>
+  <title>Restaurantly</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -94,8 +99,8 @@ switch ($resultas) {
           <li><a class="nav-link scrollto" href="#about">à Propos</a></li>
           <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
           <li><a class="nav-link scrollto" href="#events">Événements</a></li>
-          <li><a class="nav-link scrollto" href="#gallery">Galerie</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="deconnecter.php">Déconnecter</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -109,8 +114,8 @@ switch ($resultas) {
     <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
       <div class="row">
         <div class="col-lg-8">
-          <h1>Bienvenue à <span>Restaurantly</span></h1>
-          <h2>Offrir de la bonne nourriture depuis plus de 18 ans!</h2>
+          <h1>Bienvenue Mr <span><?= $_SESSION['nom']?></span> à <span>Restaurantly</span></h1>
+          <!-- <h2>Offrir de la bonne nourriture depuis plus de 18 ans!</h2> -->
 
           <div class="btns">
             <a href="#menu" class="btn-menu animated fadeInUp scrollto">Menu</a>
@@ -211,7 +216,7 @@ switch ($resultas) {
             <div class="swiper-slide">
               <div class="row event-item">
                 <div class="col-lg-6">
-                  <img src="<?= $reservation['image'] ?>" class="img-fluid" alt="">
+                  <img src="assets\img\evenement\<?= $reservation['image'] ?>" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content">
                   <h3><?= $reservation['type'] ?></h3>
@@ -244,7 +249,7 @@ switch ($resultas) {
         <form action="reservation.php" method="post"  >
           <div class="row ">
             <div class="col-lg-4 col-md-6 form-group  mt- mt-md-0">
-              <input type="email" class="form-control " name="email" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email" required>
+              <input type="email" class="form-control " value="<?= $_SESSION['email']?>" readonly name="email" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email" required>
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group dt">
@@ -292,18 +297,18 @@ switch ($resultas) {
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
 
-           <?php 
-                  foreach ($commentaire as $value) { ?>
+           <?php foreach ($commentaire as $v) { ?>
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  <?=$value["commentaire"]?>
+                  <?=$v["commentaire"]?>
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
                 <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
 
-                <h3><?= $nom." ".$prenom ?></h3>
+                <h3><?= $v["nom"]." ". $v['prenom']?></h3>
+                
                 <!-- <h4>Ceo &amp; Founder</h4> -->
               </div>
             </div>
@@ -438,7 +443,7 @@ switch ($resultas) {
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>Noma@Copenhagen.com</p>
+                <p>Restaurantly@restaurant.com</p>
               </div>
 
               <div class="phone">
@@ -456,7 +461,7 @@ switch ($resultas) {
             <form action="message.php" method="post">
               <div class="row">
                 <div class="col-lg-6 col-md-6 form-group mt-3 ">
-                  <input type="email" class="form-control" name="email_commentaire" id="email" placeholder="Email" required>
+                  <input type="email" value="<?= $_SESSION['email']?>" readonly class="form-control" name="email_commentaire" id="email" placeholder="Email" required>
                 </div>
                 <div class="col-lg-4 col-md-6 mt-3 form-group">
                 <select name="type_message" id="" class="form-select">
@@ -489,7 +494,7 @@ switch ($resultas) {
   <footer id="footer">
     <div class="footer-top">
       <div class="container">
-        <div class="row">
+        <div class="row d-flex justify-content-around">
 
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
@@ -497,8 +502,8 @@ switch ($resultas) {
               <p>
                 A108 Adam Street <br>
                 NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
+                <strong>Phone:</strong> +212 625683588<br>
+                <strong>Email:</strong> Restaurantly@restaurant.com<br>
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -511,34 +516,17 @@ switch ($resultas) {
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <!-- <h4>Liens</h4> -->
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">à propos</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#menu">Menu</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#events">Evenement</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#contact"> contact</a></li>
             </ul>
           </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
+          <div class="col-lg-4 col-md-6 footer-newsletter ">
+          <img src="assets/img/logo/<?=$logo['photo']?>" alt="" width="350px" height="250">
           </div>
 
         </div>
@@ -550,11 +538,7 @@ switch ($resultas) {
         &copy; Copyright <strong><span>Restaurantly</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/restaurantly-restaurant-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by <a href="">Ribery Zakaria</a>
       </div>
     </div>
   </footer><!-- End Footer -->

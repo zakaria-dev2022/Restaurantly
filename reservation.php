@@ -1,21 +1,15 @@
 <?php
 include_once("reservation.class.php");
 include_once("client.class.php");
-
+session_start( );
 extract($_POST);
-$client=Client::selectClient($email);
-if (!empty($client)) {
-$reservation=new Reservation($num_personne,$num_table,$type_reservation,$date,$message,$client[0]['id']);
+// $client=Client::selectClient();
+if (!empty($_SESSION['email'])) {
+$reservation=new Reservation($num_personne,$num_table,$type_reservation,$date,$message,$_SESSION['id']);
 $reservation->ajouter_reservation();
-$nom=$client[0]['nom'];
-$prenom=$client[0]['prenom'];
-// Utils::location("index2.php?resultas=reussie"); 
-Utils::location("index2.php?resultas=reussie&nom=".$nom."&prenom=".$prenom);
-// echo "reussie";
+Utils::location("index2.php?resultas=reussie");
 }else{
-    // echo "Se client n'existe pas";
     Utils::location("index2.php?resultas=erreur"); 
-    
 }
 
 ?>

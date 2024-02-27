@@ -43,13 +43,27 @@ class Client{
 
         }
 
-        static function selectClient($email) {
+        static function selectClient($email,$password) {
             try {
                 $cnx=Utils::connecter_bd();
                 // $req=$cnx->prepare("select * from $table where type = $type");
-                $req=$cnx->prepare("SELECT *from client  where email ='$email'");
+                $req=$cnx->prepare("SELECT * from client  where email ='$email' and mot_de_passe='$password'");
                 $req->execute();
-             $resultas=$req->fetchAll();
+             $resultas=$req->fetch();
+             return $resultas;
+
+            } catch (\Throwable $th) {
+                echo "echec de selection les resultas".$th->getMessage();
+            }
+
+        }
+        static function selectClientId($id) {
+            try {
+                $cnx=Utils::connecter_bd();
+                // $req=$cnx->prepare("select * from $table where type = $type");
+                $req=$cnx->prepare("SELECT *from client  where id ='$id'");
+                $req->execute();
+             $resultas=$req->fetch();
              return $resultas;
 
             } catch (\Throwable $th) {

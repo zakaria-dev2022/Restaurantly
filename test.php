@@ -1,10 +1,7 @@
 <?php
-$resultas=$_GET['resultas'];
-$nom= $_GET['nom'];
-$prenom= $_GET['prenom'];
-print_r($_GET);
-echo $nom .'<br>';
-echo $prenom .'<br>';
-echo $resultas .'<br>';
+include_once("utils.class.php");
+$logo= Utils::select_logo();
+print_r($logo['photo'])."<br>";
 
+// print_r ($commentaire[0]['id']);
 ?>

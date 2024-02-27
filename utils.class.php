@@ -32,6 +32,35 @@
             }
 
         }
+        
+        static function select_commentaire() {
+            try {
+                $cnx=Utils::connecter_bd();
+                $req=$cnx->prepare("select m.*,c.* from message m  join client c on m.client_id =c.id where type_message = 'Commentaire' ");
+                $req->execute();
+             $resultas=$req->fetchAll();
+             return $resultas;
+
+            } catch (\Throwable $th) {
+                echo "echec de selection les resultas".$th->getMessage();
+            }
+
+        }
+        
+        static function select_logo() {
+            try {
+                $cnx=Utils::connecter_bd();
+                $req=$cnx->prepare("select photo from admin ");
+                $req->execute();
+             $resultas=$req->fetch();
+             return $resultas;
+
+            } catch (\Throwable $th) {
+                echo "echec de selection les resultas".$th->getMessage();
+            }
+
+        }
+
 
         static function location($page){
             header("location:$page");
