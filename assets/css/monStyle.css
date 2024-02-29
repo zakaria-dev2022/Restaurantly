@@ -39,7 +39,18 @@ input ,textarea ,select {
     font-weight: bold;
     transition: 0.3s;
   }
-  .bt:hover{
+  .bt1:hover{
     background:#cda45e;
     color: #ffffff !important;
   }
+  .bt1{
+    width: 50%;
+    border: 1px solid #cda45e;
+    color: #cda45e !important;
+    /* background-color: #61e907 !important; */
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  

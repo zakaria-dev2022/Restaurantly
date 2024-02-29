@@ -46,7 +46,7 @@ switch ($resultas) {
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/logo/2024_02_26 19-46-28 - Logo .png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -100,12 +100,15 @@ switch ($resultas) {
           <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
           <li><a class="nav-link scrollto" href="#events">Événements</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" href="deconnecter.php">Déconnecter</a></li>
+          <li><a class="nav-link scrollto" href="deconnecter.php" onclick="return confirm('Voulez-Vous Vraiment Déconnecter')">Déconnecter</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
       <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Reservation Table</a>
-      <span id="panier"></span>
+      <!-- <span id="panier"  class="panier bg-primary">
+        <img src="assets/img/favicon.png" width="30" alt="">
+        <button class="rounded-circle bg-danger"><?php echo 2?></button>
+      </span> -->
     </div>
   </header><!-- End Header -->
 
@@ -168,7 +171,7 @@ switch ($resultas) {
 
         <div class="section-title">
           <h2>Menu</h2>
-          <p>Check Our Tasty Menu</p>
+          <p>Consultez nos savoureux Menu</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -193,6 +196,7 @@ switch ($resultas) {
             </div>
             <div class="menu-ingredients">
             <?= $p['description'] ?>
+            
             <button class="btn mycolor" onclick="add(<?= $p['id'] ?>)">ajouter</button>
             </div>
             <?php }?>
@@ -252,11 +256,11 @@ switch ($resultas) {
               <input type="email" class="form-control " value="<?= $_SESSION['email']?>" readonly name="email" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email" required>
               <div class="validate"></div>
             </div>
-            <div class="col-lg-4 col-md-6 form-group dt">
+            <div class="col-lg-4 col-md-6 form-group dt mt-md-0  mt-3">
               <input type="date" name="date" class="form-control" id="date" placeholder="Date Reservation" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required>
               <div class="validate"></div>
             </div>
-            <div class="col-lg-4 col-md-6 form-group mt-">
+            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
               <input type="number" class="form-control" name="num_table" id="time" placeholder="Nombre Table" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required>
               <div class="validate"></div>
             </div>
@@ -279,7 +283,7 @@ switch ($resultas) {
             <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
             <div class="validate"></div>
           </div>
-          <div class="text-center "><button type="submit" class="book-a-table-btn mt-5 bt">Reservation Table</button></div>
+          <div class="text-center "><button type="submit" class="book-a-table-btn mt-5 bt1">Reservation</button></div>
         </form>
 
       </div>
@@ -471,13 +475,13 @@ switch ($resultas) {
               </div>
               </div>
               <div class="form-group mt-3">
-            <textarea class="form-control" name="message_commentaire" rows="5" placeholder="Message"></textarea>
+            <textarea class="form-control" required name="message_commentaire" rows="5" placeholder="Message"></textarea>
             <div class="validate"></div>
           </div>
               <!-- <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="8" placeholder="Message" ></textarea>
               </div> -->
-              <div class="text-center"><button type="submit" class="py-2 mt-5 bt">Envoyer Message</button></div>
+              <div class="text-center"><button type="submit" class="py-2 mt-5 bt1">Envoyer Message</button></div>
               <!-- <div class="text-center "><button type="submit" class="book-a-table-btn mt-5 bt">Reservation Table</button></div> -->
             </form>
 
@@ -493,7 +497,7 @@ switch ($resultas) {
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="footer-top">
-      <div class="container">
+      <div class="container text-center">
         <div class="row d-flex justify-content-around">
 
           <div class="col-lg-3 col-md-6">
@@ -515,7 +519,7 @@ switch ($resultas) {
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
+          <div class="col-lg-2 col-md-6 footer-links d-flex justify-content-center text-center">
             <!-- <h4>Liens</h4> -->
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
@@ -559,7 +563,7 @@ switch ($resultas) {
   <script>
     function add(productId) {
 
-alert("sakut cv");
+//alert("sakut cv");
 $.ajax({
     type: 'POST',
     url: 'panier.php', // URL du script côté serveur pour ajouter au panier
